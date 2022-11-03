@@ -1,0 +1,43 @@
+.container {
+    max-width: 290px;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 25px;
+    border-radius: 5px;
+    box-shadow: rgb(0 0 0 / 30%) 0px 0px 6px -1px, rgb(0 0 0 / 26%) 0px -2px 5px 0px, rgb(0 0 0 / 20%) 0px 0px 15px 0px;
+}
+
+.paper {
+    margin-top: 20px;
+    margin-left: 1px;
+    display: flex;
+    flex-direction: column;
+}
+
+.textTitle {
+    text-decoration: underline;
+    text-decoration-color: #8d046b;
+    text-underline-position: under;
+    font-family: 'Poppins', sans-serif;
+}
+
+.divButton {
+    margin: 32px 0px 16px 0px;
+}
+
+.form {
+    margin-top: 8px;
+    width: 100%;
+}
+
+.submit {
+    width: 100%;
+}
+
+.message {
+    text-align: center;
+    color: red;
+    font-size: 14;
+    padding-top: 10px;
+}
