@@ -2,13 +2,14 @@
 import { Button, Container, TextField, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from './LoginComponent.module.scss';
+import styles from './CadastroComponent.module.scss';
 
-import { LoginAPI } from "../../../infra/usuario/UsuarioRepository";
+import { CadastroAPI } from "../../../infra/usuario/UsuarioRepository";
 
 
-const LoginComponent = () => {
+const CadastroComponent = () => {
     const [email, setEmail] = React.useState("");
+    const [nome, setNome] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [visible, setVisible] = React.useState(false);
     const [msg, setMsg] = React.useState("");
@@ -17,6 +18,9 @@ const LoginComponent = () => {
     const handleChangeEmail = (e) => {
         setEmail(e.target.value);
     };
+    const handleChangeNome = (e) => {
+        setNome(e.target.value);
+    };
 
     const handleChangePassword = (e) => {
         setPassword(e.target.value);
@@ -24,21 +28,21 @@ const LoginComponent = () => {
 
     const handleClickSubmit = async () => {
         if (email && password) {
-            await LoginAPI(email, password).then((res) => { console.log(res.token); localStorage.setItem('token', res.token); localStorage.setItem('email', email); navigate('/flores') }).catch((err)=> {setVisible(true)})
+            await CadastroAPI(email, nome, password).then((res) => { navigate('/login') }).catch((err) => { setVisible(true) })
         } else {
-            setMsg("E-mail ou senha inválidos!");
+            setMsg("E-mail já utilizado!");
         }
     }
 
     useEffect(() => {
-        setMsg("E-mail ou senha inválidos!");
+        setMsg("E-mail já utilizado!");
     }, []);
 
     return (
         <Container className={styles.container}>
             <div className={styles.paper}>
                 <Typography className={styles.textTitle}>
-                    Entrar
+                    Cadastro
                 </Typography>
                 <form className={styles.form} noValidate>
                     <div style={{ paddingLeft: "10px", paddingRight: "10px" }}>
@@ -51,6 +55,16 @@ const LoginComponent = () => {
                             margin="normal"
                             value={email}
                             onChange={handleChangeEmail}
+                            fullWidth
+                        />
+                        <TextField
+                            id="standard-required"
+                            name="nome"
+                            label="Entre com o seu nome"
+                            variant="standard"
+                            margin="normal"
+                            value={nome}
+                            onChange={handleChangeNome}
                             fullWidth
                         />
                         <TextField
@@ -67,7 +81,7 @@ const LoginComponent = () => {
                         />
                     </div>
                     <div style={{ margin: 6, height: 21, fontSize: 13 }}>
-                        <a href="/cadastro">Não tem uma conta? Cadastre-se</a>
+                        <a href="/login">Já tem uma conta? Entrar</a>
                     </div>
                     <div style={{ height: 21 }}>
                         {visible ? (
@@ -84,7 +98,7 @@ const LoginComponent = () => {
                             className={styles.submit}
                             size="medium"
                         >
-                            Entrar
+                            Cadastrar
                         </Button>
                     </div>
                 </form>
@@ -93,5 +107,5 @@ const LoginComponent = () => {
     );
 }
 
-export default LoginComponent;
+export default CadastroComponent;
 

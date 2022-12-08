@@ -1,0 +1,27 @@
+.root {
+    display: flex;
+}
+
+
+.appBar {
+    display: inline-flex;
+    width: 0px
+}
+
+
+.header {
+    margin-top: 35px;
+    margin-left: 30px;
+    font-size: 22px;
+    text-decoration: underline;
+    text-decoration-color: #14C276;
+    text-underline-position: under;
+    display: flex;
+    margin-bottom: 0px;
+}
+
+
+.logo {
+    margin-right: 20px;
+    margin-top: 3px
+}
